@@ -1,3 +1,3 @@
 # Advanced-Programming-Project
-Master: Dr.Rafiei
+Profesor: Dr.Rafiei
 4001 semester
