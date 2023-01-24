@@ -9,7 +9,7 @@ from pages.score_table import score_table
 def main():
     player_information = login()
 
-    player_command = start_menu()
+    player_command = start_menu(player_information)
 
     if player_command == 'one_player_game':
         one_player_game(player_information)
