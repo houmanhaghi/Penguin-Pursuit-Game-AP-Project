@@ -1,14 +1,16 @@
 import os, sys
 import pygame
 from components.constants import *
+from db.data_base import DB
 
 # HOW TO CLICK IN PYGAME
 # https://stackoverflow.com/questions/10990137/pygame-mouse-clicking-detection
 
 
 def login():
-    user_text = ''
-
+    username = ''
+    db = DB(os.path.join(Path.cwd().parent, r'db\members.db'))
+    print(os.path.join(Path.cwd().parent, r'db\members.db'))
     pygame.display.set_caption("Login")
 
     welcome = pygame.font.Font(None, 40).render('WELCOME TO THE PENGUIN GAME', 1, (0, 0, 0))
@@ -34,10 +36,11 @@ def login():
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if  login_rect.x < mouse[0] < login_rect.x+ 100 and login_rect.y <= mouse[1] <= login_rect.y+ 30:
-                    pass
+                    return db.read(username)
 
                 elif  signup_rect.x < mouse[0] < signup_rect.x+ 100 and signup_rect.y <= mouse[1] <= signup_rect.y+ 30:
-                    pass
+                    db.insert((username, 0, 1, None))
+                    return db.read(username)
 
                 elif input_rect.collidepoint(event.pos):
                     active = True
@@ -52,12 +55,12 @@ def login():
                 if event.key == pygame.K_BACKSPACE:
 
                     # get text input from 0 to -1 i.e. end.
-                    user_text = user_text[:-1]
+                    username = username[:-1]
 
                 # Unicode standard is used for string
                 # formation
                 else:
-                    user_text += event.unicode
+                    username += event.unicode
 
         pygame.display.update()
 
@@ -76,7 +79,7 @@ def login():
 
 
         pygame.draw.rect(screen, color, input_rect)
-        text_surface = base_font.render(user_text, True, (255, 255, 255))
+        text_surface = base_font.render(username, True, (255, 255, 255))
         screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
         input_rect.w = max(200, text_surface.get_width() + 10)
 
