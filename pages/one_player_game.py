@@ -52,6 +52,7 @@ class ColoredPenguin:
 class BlackPenguin(ColoredPenguin):
     def __init__(self):
         super().__init__()
+        self.temp = []
 
         self.icon_address = pygame.transform.scale(pygame.image.load(
             # dynamic address
@@ -65,9 +66,21 @@ class BlackPenguin(ColoredPenguin):
 
     ### penguin movement
     ### it should be in an array and will be different for each level
-    def BlackPenguin_move(self, last_level):
-        pass
+    def BlackPenguin_move(self, last_step):
+        # this numbers are for level 1:
+        total_steps = 29
+        total_time = 30 #second
+        step = 29*25//30
 
+        # up, right, down, left
+        u, r, d, l, = (0, -step), (step, 0), (0, step), (-step, 0)
+        movement_steps =[
+            r,r,r,r,d,d,r,r,r,r,r,r,r,r,r,d,r,r,r,r,r,d,d,d,d,d,d,d,d
+        ]
+        if not last_step in self.temp:
+            self.temp.append(last_step)
+            self.rect.x += movement_steps[last_step][0]
+            self.rect.y += movement_steps[last_step][1]
 
 class Fish:
     def __init__(self):
@@ -129,6 +142,8 @@ def one_player_game(player_information):
     maze_size = (550, 350)
     maze_start = (screen_width //2 - maze_size[0]//2, 5*screen_height//18)
     staff_start = (32, 32)
+
+    #if staff_size == wall_size: walls will not be discrites
     staff_size = 25
     wall_size = 25
 
@@ -137,9 +152,9 @@ def one_player_game(player_information):
 
     global walls
     walls = []
+    temp = []
     new_level = 1
     new_result = 'loss'
-
 
     ### instances
     global colored_penguin, black_penguin, fish
@@ -147,23 +162,21 @@ def one_player_game(player_information):
     black_penguin = BlackPenguin()
     fish = Fish()
     maze = Maze()
+
     maze.create_maze()
-
-
 
     ### control variables
     if player_last_result == 'win':
         if player_last_level < max_level:
             new_level = player_last_level+1
-            black_penguin.BlackPenguin_move(player_last_level+1)
+            # black_penguin.BlackPenguin_move(player_last_level+1)
     elif player_last_result == 'loss':
         new_level = player_last_level
-        black_penguin.BlackPenguin_move(player_last_level)
+        # black_penguin.BlackPenguin_move(player_last_level)
     elif player_last_result == 'double loss':
         if player_last_level > 1:
             new_level = player_last_level - 1
-            black_penguin.BlackPenguin_move(player_last_level-1)
-
+            # black_penguin.BlackPenguin_move(player_last_level-1)
 
 
     # pygame starts
@@ -176,6 +189,7 @@ def one_player_game(player_information):
     show_level_position = (screen_width//2 - show_level.get_width()//2 ,maze_start[1]//2)
 
     run = True
+    step_counter = 0
 
     while run:
         for event in pygame.event.get():
@@ -185,19 +199,29 @@ def one_player_game(player_information):
                 run = False
 
         key = pygame.key.get_pressed()
-        if key[pygame.K_LEFT]:
+        if key[pygame.K_LEFT] or key[pygame.K_a]:
             colored_penguin.move(-2, 0)
-        if key[pygame.K_RIGHT]:
+        if key[pygame.K_RIGHT]or key[pygame.K_d]:
             colored_penguin.move(2, 0)
-        if key[pygame.K_UP]:
+        if key[pygame.K_UP]or key[pygame.K_w]:
             colored_penguin.move(0, -2)
-        if key[pygame.K_DOWN]:
+        if key[pygame.K_DOWN]or key[pygame.K_s]:
             colored_penguin.move(0, 2)
 
         # Just added this to make it slightly fun ;)
         if colored_penguin.rect.colliderect(fish.rect):
             pygame.quit()
             sys.exit()
+
+
+        #blach penguin movement
+        try:
+            black_penguin.BlackPenguin_move(step_counter // fps)
+        except:
+            pass
+        finally:
+            step_counter += 1
+
 
         # draw and blit elements
         screen.blit(background, (0, 0))

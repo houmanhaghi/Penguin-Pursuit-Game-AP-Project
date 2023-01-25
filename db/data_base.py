@@ -17,6 +17,11 @@ class DB:
             if line[0] == info[0]:
                 print('founded')
                 return line
+        # line -> name, scores, last_level, last_result
+        # name : name
+        # score: ex) 34, 5, 54
+        # last_level: 3
+        # last_result: "win" or "loss" or "double loss"
 
 
     def insert(self, info:tuple):
