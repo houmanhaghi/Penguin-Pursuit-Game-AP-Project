@@ -68,9 +68,9 @@ class BlackPenguin(ColoredPenguin):
     ### it should be in an array and will be different for each level
     def BlackPenguin_move(self, last_step):
         # this numbers are for level 1:
-        total_steps = 29
+        total_steps = 30
         total_time = 30 #second
-        step = 29*25//30
+        step = (total_steps * wall_size // total_time)
 
         # up, right, down, left
         u, r, d, l, = (0, -step), (step, 0), (0, step), (-step, 0)
@@ -78,13 +78,15 @@ class BlackPenguin(ColoredPenguin):
             r,r,r,r,d,d,r,r,r,r,r,r,r,r,r,d,r,r,r,r,r,d,d,d,d,d,d,d,d
         ]
         if not last_step in self.temp:
+            if len(self.temp) == 0:
+                self.rect.x -= 4
+                self.rect.y -= 4
             self.temp.append(last_step)
             self.rect.x += movement_steps[last_step][0]
             self.rect.y += movement_steps[last_step][1]
 
 class Fish:
     def __init__(self):
-        # self.rect = pygame.Rect(staff_end[0]+maze_start[0], staff_end[1]+maze_start[1], staff_size, staff_size)
         self.icon_address = pygame.transform.scale(pygame.image.load(
         #dynamic address
         # os.path.join(Path.cwd().parent, r'assets/fish.png')
