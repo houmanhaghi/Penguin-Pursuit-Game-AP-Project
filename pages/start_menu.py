@@ -1,4 +1,3 @@
-import one_player_game, two_player_game, score_table
 import pygame, sys
 from pygame.locals import *
 from components.constants import *
@@ -29,6 +28,7 @@ def start_menu(player_information):
     
     # Main container function that holds the buttons and game functions
     def main_menu():
+        global clock
         while True:
             screen.blit(background, (0, 0))
 
