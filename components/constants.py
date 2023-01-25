@@ -2,7 +2,7 @@ import os, sys
 import pygame
 from pathlib import Path
 
-screen_width, screen_height = 800, 600
+screen_width, screen_height = 600, 600 # 800, 600
 fps= 60 #frame per second
 clock = pygame.time.Clock()
 

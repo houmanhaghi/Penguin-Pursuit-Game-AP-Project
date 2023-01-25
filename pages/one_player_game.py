@@ -1,3 +1,5 @@
+import time
+
 import pygame
 from components.constants import *
 import os, sys
@@ -157,6 +159,9 @@ def one_player_game(player_information):
     temp = []
     new_level = 1
     new_result = 'loss'
+    h = 0
+    new_h = -1
+    rotation_time = 3  #second
 
     ### instances
     global colored_penguin, black_penguin, fish
@@ -212,35 +217,53 @@ def one_player_game(player_information):
 
         # Just added this to make it slightly fun ;)
         if colored_penguin.rect.colliderect(fish.rect):
+            print('You Are Winner')
+            time.sleep(0.7)
+            pygame.quit()
+            sys.exit()
+
+        if black_penguin.rect.colliderect(fish.rect):
+            print('You Are Losser')
+            time.sleep(0.7)
             pygame.quit()
             sys.exit()
 
 
         #blach penguin movement
         try:
-            black_penguin.BlackPenguin_move(step_counter // fps)
+            black_penguin.BlackPenguin_move(2 * step_counter // fps)
         except:
             pass
         finally:
             step_counter += 1
 
+        # rotation control
+        h = 90 * (step_counter // (fps * rotation_time))
+        if h != new_h:
+            new_h = h
 
         # draw and blit elements
+
+######### whit screen rotation
         screen.blit(background, (0, 0))
-        screen.blit(show_level, show_level_position)
+        if rotation_time > step_counter // fps:
+            screen.blit(show_level, show_level_position)
         screen.blit(colored_penguin.icon_address, colored_penguin.rect)
         screen.blit(black_penguin.icon_address, black_penguin.rect)
         screen.blit(fish.icon_address, fish.rect)
-
         for wall in walls:
             pygame.draw.rect(screen, (255, 255, 255), wall.rect)
+
+        screen.blit(pygame.transform.rotate(screen, -h), (0, 0))
+
+#########################################################################
 
         pygame.display.update()
         pygame.display.flip()
         clock.tick(fps)
 
 
-pygame.quit()
+pygame.quit()######
 
 #example
 one_player_game(('houman', '10, 40, 97', 1, 'win'))
