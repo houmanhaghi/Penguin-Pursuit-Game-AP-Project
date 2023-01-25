@@ -3,18 +3,18 @@ this file is for creating data base with sqlite3
 it just run first time and does not need to run more
 """
 
-#
-# import sqlite3 as sq
-#
-#
-# #create db or just call if exist
-# connect = sq.connect("members.db")
-#
-# #create curseor
-# cursoe = connect.cursor()
-#
-#
-# #create table
+
+import sqlite3 as sq
+
+
+#create db or just call if exist
+connect = sq.connect("members.db")
+
+#create curseor
+cursoe = connect.cursor()
+
+
+# create table
 # cursoe.execute("""
 #         CREATE TABLE ALL_MEMBERS (
 #             username TEXT,
@@ -23,6 +23,9 @@ it just run first time and does not need to run more
 #             last_result TEXT
 #                         )
 #             """)
-#
-# connect.commit()
-# connect.close()
+
+
+########### adding information
+
+connect.commit()
+connect.close()
