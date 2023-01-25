@@ -32,14 +32,14 @@ def start_menu(player_information):
         while True:
             screen.blit(background, (0, 0))
 
-            draw_text('Main Menu', header_font, (0, 0, 0), screen, 310, 117)
+            draw_text('Main Menu', header_font, (0, 0, 0), screen, screen_width // 2 - 95, 117)
     
             mx, my = pygame.mouse.get_pos()
 
             #creating buttons
-            button_1 = pygame.Rect(300, 250, 200, 50)
-            button_2 = pygame.Rect(300, 350, 200, 50)
-            button_3 = pygame.Rect(300, 450, 200, 50)
+            button_1 = pygame.Rect(screen_width // 2 - 100, 250, 200, 50)
+            button_2 = pygame.Rect(screen_width // 2 - 100, 350, 200, 50)
+            button_3 = pygame.Rect(screen_width // 2 - 100, 450, 200, 50)
 
             #defining functions when a certain button is pressed
             if button_1.collidepoint((mx, my)):
@@ -60,9 +60,9 @@ def start_menu(player_information):
             pygame.draw.rect(screen, (0,191,255), button_3)
     
             #writing text on top of button
-            draw_text('One Player', font2, (255,255,255), screen, 335, 257)
-            draw_text('Two Player', font2, (255,255,255), screen, 335, 357)
-            draw_text('Score Table', font2, (255,255,254), screen, 335, 457)
+            draw_text('One Player', font2, (255,255,255), screen, screen_width // 2 - 65, 257)
+            draw_text('Two Player', font2, (255,255,255), screen, screen_width // 2 - 65, 357)
+            draw_text('Score Table',font2, (255,255,254), screen, screen_width // 2 - 65, 457)
 
 
             click = False
