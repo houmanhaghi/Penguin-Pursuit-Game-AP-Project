@@ -10,15 +10,23 @@ class DB:
 
     def read(self, info: tuple):
         self.cursor.execute("SELECT * FROM ALL_MEMBERS")
+        print('readed')
         result = self.cursor.fetchall()
 
         for line in result:
             if line[0] == info[0]:
+                print('founded')
                 return line
+        # line -> name, scores, last_level, last_result
+        # name : name
+        # score: ex) 34, 5, 54
+        # last_level: 3
+        # last_result: "win" or "loss" or "double loss"
 
 
     def insert(self, info:tuple):
-        self.cursor.executemany("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
+        self.cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
+        print('inserted')
         self.connect.commit()
 
 
@@ -28,6 +36,5 @@ class DB:
                 SET scores = {info[1]}, lase_level = {info[2]}, last_result = {info[3]}
                 WHERE username = {info[0]} 
         """)
+        print('updated')
         self.connect.commit()
-
-
