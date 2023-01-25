@@ -76,6 +76,6 @@ def start_menu(player_information):
     
     main_menu()
 
-start_menu(("hello", "23, 45, 80", 1, "win"))
+# start_menu(("hello", "23, 45, 80", 1, "win"))
     # HOW TO CLICK IN PYGAME
     # https://stackoverflow.com/questions/10990137/pygame-mouse-clicking-detection
