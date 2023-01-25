@@ -17,7 +17,10 @@ header_font_none = pygame.font.Font(None, 35)
 
 icon_image = pygame.image.load(
     # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
+    #houman addr
     os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png")
+    # miayesh addr
+    ##
 )
 pygame.display.set_icon(icon_image)
 

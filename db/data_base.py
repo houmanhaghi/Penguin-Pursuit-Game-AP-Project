@@ -38,3 +38,4 @@ class DB:
         """)
         print('updated')
         self.connect.commit()
+    
