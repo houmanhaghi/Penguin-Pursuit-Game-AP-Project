@@ -6,7 +6,6 @@ from db.data_base import DB
 # HOW TO CLICK IN PYGAME
 # https://stackoverflow.com/questions/10990137/pygame-mouse-clicking-detection
 
-
 def login():
     username = ''
     db = DB(os.path.join(Path.cwd().parent, r'db\members.db'))
@@ -94,10 +93,3 @@ def login():
 
         clock.tick(fps)
 
-        if command:
-            pass
-
-
-
-
-login()
