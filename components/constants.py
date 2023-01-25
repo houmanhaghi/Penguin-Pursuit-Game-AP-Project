@@ -10,11 +10,13 @@ pygame.init()
 screen = pygame.display.set_mode((screen_width, screen_height))
 
 base_font = pygame.font.Font(None, 20)
+font2 = pygame.font.SysFont("gadugi", 25, bold=True)
+header_font = pygame.font.SysFont("gadugi", 35, bold=True)
 
-icon_image = pygame.image.load(os.path.join(Path.cwd().parent, r'assets\happy_panguin.png'))
+icon_image = pygame.image.load(os.path.join(Path.cwd().parent, r'assets/happy_panguin.png'))
 pygame.display.set_icon(icon_image)
 
 
 
 background =pygame.transform.scale(pygame.image.load(
-    os.path.join(Path.cwd().parent, r'assets\bg1.jpg')), (screen_width, screen_height))
+    os.path.join(Path.cwd().parent, r'assets/bg1.jpg')), (screen_width, screen_height))
