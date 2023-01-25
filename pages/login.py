@@ -8,8 +8,9 @@ from db.data_base import DB
 
 def login():
     username = ''
-    db = DB(os.path.join(Path.cwd().parent, r'db\members.db'))
-    print(os.path.join(Path.cwd().parent, r'db\members.db'))
+    print(f"db addr -> {os.path.join(Path.cwd().parent, r'db/members.db')}")
+    print("          ", os.path.join(Path.cwd().parent, r'db\members.db'))
+    db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
     pygame.display.set_caption("Login")
 
     welcome = pygame.font.Font(None, 40).render('WELCOME TO THE PENGUIN GAME', 1, (0, 0, 0))
@@ -23,7 +24,6 @@ def login():
 
     active = False
     run = True
-    command = None
 
     while run:
         mouse = pygame.mouse.get_pos()
@@ -90,6 +90,6 @@ def login():
 
 
         pygame.display.flip()
-
         clock.tick(fps)
 
+login()
