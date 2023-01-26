@@ -1,11 +1,7 @@
 import time
-
-import pygame
 from components.constants import *
 import os, sys
-import pygame as py
-from assets import *
-from db import *
+from db.data_base import *
 
 class Wall():
 
@@ -18,7 +14,7 @@ class Wall():
 class ColoredPenguin:
     def __init__(self):
         self.rect = pygame.Rect(staff_start[0]+maze_start[0], staff_start[1]+maze_start[1], staff_size, staff_size)
-
+        self.footprint = set()
         self.icon_address = pygame.transform.scale(pygame.image.load(
         #dynamic address
         # os.path.join(Path.cwd().parent, r'assets/colored_penguin.png')
@@ -38,17 +34,20 @@ class ColoredPenguin:
         self.rect.y += dy
 
         # If you collide with a wall, move out based on velocity
-        global walls
         for wall in walls:
             if self.rect.colliderect(wall.rect):
                 if dx > 0:  # Moving right; Hit the left side of the wall
                     self.rect.right = wall.rect.left
+                    self.footprint.add((self.rect.x, self.rect.y))
                 if dx < 0:  # Moving left; Hit the right side of the wall
                     self.rect.left = wall.rect.right
+                    self.footprint.add((self.rect.x, self.rect.y))
                 if dy > 0:  # Moving down; Hit the top side of the wall
                     self.rect.bottom = wall.rect.top
+                    self.footprint.add((self.rect.x, self.rect.y))
                 if dy < 0:  # Moving up; Hit the bottom side of the wall
                     self.rect.top = wall.rect.bottom
+                    self.footprint.add((self.rect.x, self.rect.y))
 
 
 class BlackPenguin(ColoredPenguin):
@@ -69,7 +68,10 @@ class BlackPenguin(ColoredPenguin):
     ### penguin movement
     ### it should be in an array and will be different for each level
     def BlackPenguin_move(self, last_step):
+
         # this numbers are for level 1:
+        global _last_step, total_steps, total_time
+        _last_step = last_step
         total_steps = 30
         total_time = 30 #second
         step = (total_steps * wall_size // total_time)
@@ -154,11 +156,8 @@ def one_player_game(player_information):
     global player_username, player_scores, player_last_level, player_last_result
     player_username, player_scores, player_last_level, player_last_result = player_information
 
-    global walls
+    global walls, score, new_result, new_level, coloredPenguin_footprint
     walls = []
-    temp = []
-    new_level = 1
-    new_result = 'loss'
     h = 0
     new_h = -1
     rotation_time = 3  #second
@@ -169,6 +168,7 @@ def one_player_game(player_information):
     black_penguin = BlackPenguin()
     fish = Fish()
     maze = Maze()
+    db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
 
     maze.create_maze()
 
@@ -190,6 +190,14 @@ def one_player_game(player_information):
     pygame.init()
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption(f"Lumosity")
+    icon_image = pygame.image.load(
+        # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
+        # houman addr
+        os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png")
+        # miayesh addr
+        ##
+    )
+    pygame.display.set_icon(icon_image)
 
     # drawers
     show_level = pygame.font.Font(None, 40).render(f'LEVEL {new_level}', True, (0, 0, 0))
@@ -217,14 +225,21 @@ def one_player_game(player_information):
 
         # Just added this to make it slightly fun ;)
         if colored_penguin.rect.colliderect(fish.rect):
-            print('You Are Winner')
-            time.sleep(0.7)
+            score = ( len(colored_penguin.footprint)//3 + total_steps - _last_step)
+            new_player_score = player_scores + f', {score}'
+            db.update((player_username, new_player_score, new_level, 'win'))
+            time.sleep(1)
             pygame.quit()
             sys.exit()
 
         if black_penguin.rect.colliderect(fish.rect):
-            print('You Are Losser')
-            time.sleep(0.7)
+            time.sleep(1)
+            if player_last_result == 'win':
+                db.update((player_username, player_scores, new_level, 'loss'))
+            elif player_last_result == 'loss' or player_last_level == 'double loss':
+                db.update((player_username, player_scores, new_level, 'double loss'))
+            else:
+                db.update((player_username, player_scores, new_level, 'loss'))
             pygame.quit()
             sys.exit()
 
@@ -248,9 +263,9 @@ def one_player_game(player_information):
         screen.blit(background, (0, 0))
         if rotation_time > step_counter // fps:
             screen.blit(show_level, show_level_position)
-        screen.blit(colored_penguin.icon_address, colored_penguin.rect)
-        screen.blit(black_penguin.icon_address, black_penguin.rect)
-        screen.blit(fish.icon_address, fish.rect)
+        screen.blit(pygame.transform.rotate(colored_penguin.icon_address, h), colored_penguin.rect)
+        screen.blit(pygame.transform.rotate(black_penguin.icon_address, h), black_penguin.rect)
+        screen.blit(pygame.transform.rotate(fish.icon_address, h), fish.rect)
         for wall in walls:
             pygame.draw.rect(screen, (255, 255, 255), wall.rect)
 
@@ -266,4 +281,4 @@ def one_player_game(player_information):
 pygame.quit()######
 
 #example
-one_player_game(('houman', '10, 40, 97', 1, 'win'))
+one_player_game(('houman', '10, 40, 97, 876', 1, 'win'))

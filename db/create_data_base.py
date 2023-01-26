@@ -11,11 +11,11 @@ import sqlite3 as sq
 connect = sq.connect("members.db")
 
 #create curseor
-cursoe = connect.cursor()
+cursor = connect.cursor()
 
 
 # create table
-# cursoe.execute("""
+# cursor.execute("""
 #         CREATE TABLE ALL_MEMBERS (
 #             username TEXT,
 #             scores TEXT,
@@ -25,7 +25,38 @@ cursoe = connect.cursor()
 #             """)
 
 
-########### adding information
+############## adding information ##############
+info = (
+        'houman', '10, 40, 97, 876', 1, 'win'
+)
+
+
+cursor.execute("select * from ALL_MEMBERS")
+ii = cursor.fetchall()
+for i in ii:
+    print(i)
+
+
+# cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
+
+
+# cursor.execute(f'''
+#                 UPDATE ALL_MEMBERS
+#                 SET scores = "{info[1]}", lase_level = {info[2]}, last_result = "{info[3]}"
+#                 WHERE username = "{info[0]}" ;
+#         ''')
+#
+
+
+
+
+# cursor.execute(f"""
+#         DELETE FROM ALL_MEMBERS
+#         WHERE username = "houman";
+#         """)
+
+
+#########################################
 
 connect.commit()
 connect.close()

@@ -31,11 +31,20 @@ class DB:
 
 
     def update(self, info):
-        self.cursor.execute(f"""
+        # first delete then insert :)
+        # self.cursor.execute(f"""
+        #                 DELETE FROM ALL_MEMBERS
+        #                 WHERE username = '{info[0]}';
+        #                 """)
+        #
+        # self.cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
+
+        self.cursor = self.connect.cursor()
+        self.cursor.execute(f'''
                 UPDATE ALL_MEMBERS
-                SET scores = {info[1]}, lase_level = {info[2]}, last_result = {info[3]}
-                WHERE username = {info[0]} 
-        """)
+                SET scores = "{info[1]}", lase_level = {info[2]}, last_result = "{info[3]}"
+                WHERE username = "{info[0]}" ;
+        ''')
+
         print('updated')
         self.connect.commit()
-    
