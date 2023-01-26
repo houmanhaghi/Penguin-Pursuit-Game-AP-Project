@@ -25,7 +25,9 @@ cursoe = connect.cursor()
 #             """)
 
 
-########### adding information
 
+########### adding information
+info = ("houman", "0, 10, 23, 4, 76, 23", 1, "null")
+cursoe.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
 connect.commit()
 connect.close()

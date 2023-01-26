@@ -23,7 +23,10 @@ class ColoredPenguin:
         #dynamic address
         # os.path.join(Path.cwd().parent, r'assets/colored_penguin.png')
         #houman address
-        os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\colored_penguin.png")
+        # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\colored_penguin.png")
+        # ), (staff_size, staff_size))
+        #nia address
+        os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\colored_penguin.png")
         ), (staff_size, staff_size))
 
     def move(self, dx, dy):
@@ -61,10 +64,13 @@ class BlackPenguin(ColoredPenguin):
             # os.path.join(Path.cwd().parent, r'assets/black_penguin.png')
 
             # houman address
-            os.path.join(
-                r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\black_penguin.png")
+            # os.path.join(
+            #     r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\black_penguin.png")
+            #     ), (staff_size, staff_size))
+            #nia address
+            os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\black_penguin.png")
+            ), (staff_size, staff_size))
 
-        ), (staff_size, staff_size))
 
     ### penguin movement
     ### it should be in an array and will be different for each level
@@ -94,8 +100,11 @@ class Fish:
         # os.path.join(Path.cwd().parent, r'assets/fish.png')
 
         #houman address
-        os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\fish.png")
-
+        # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\fish.png")
+        #
+        # ), (staff_size, staff_size))
+        #nia address
+        os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\fish.png")
         ), (staff_size, staff_size))
 
     def set_fish_rect(self, position):
