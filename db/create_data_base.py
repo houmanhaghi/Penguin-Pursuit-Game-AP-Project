@@ -25,7 +25,6 @@ cursor = connect.cursor()
 #             """)
 
 
-<<<<<<< HEAD
 ############## adding information ##############
 info = (
         'houman', '10, 40, 97, 876', 1, 'win'
@@ -58,11 +57,10 @@ for i in ii:
 
 
 #########################################
-=======
->>>>>>> ecae7e08a6ac292dd8a377519522385b9c75fe7d
+
 
 ########### adding information
 info = ("houman", "0, 10, 23, 4, 76, 23", 1, "null")
-cursoe.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
+cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
 connect.commit()
 connect.close()

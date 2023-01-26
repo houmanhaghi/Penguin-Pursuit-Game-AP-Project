@@ -16,28 +16,32 @@ header_font = pygame.font.SysFont("gadugi", 35, bold=True)
 header_font_none = pygame.font.Font(None, 35)
 table_font = pygame.font.SysFont("gadugi", 20, bold=True)
 
-icon_image = pygame.image.load(
-    # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
-    #houman addr
-    # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png")
-    # niayesh addr
-    os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\happy_penguin.png")
-)
-pygame.display.set_icon(icon_image)
+# os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
+# houman addr
+try:
+    icon_image = pygame.image.load(
+    os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png"))
+    pygame.display.set_icon(icon_image)
+except:
+    icon_image = pygame.image.load(
+    os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\happy_penguin.png"))
+    pygame.display.set_icon(icon_image)
 
 
+#dynamic address
+# os.path.join(Path.cwd().parent, r'assets/bg1.jpg')
 
-background = pygame.transform.scale(pygame.image.load(
-    #dynamic address
-    # os.path.join(Path.cwd().parent, r'assets/bg1.jpg')
+try:
+    background = pygame.transform.scale(pygame.image.load(
+    os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\bg1.jpg")
+    ), (screen_width, screen_height))
 
-    #houman address
-    # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\bg1.jpg")
-    #
-    # ), (screen_width, screen_height))
-    #nia address
+except:
+    background = pygame.transform.scale(pygame.image.load(
     os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\bg1.jpg")
     ), (screen_width, screen_height))
+
+
 
 
 max_level = 5

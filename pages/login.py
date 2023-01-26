@@ -8,8 +8,6 @@ from db.data_base import DB
 
 def login():
     username = ''
-    print(f"db addr -> {os.path.join(Path.cwd().parent, r'db/members.db')}")
-    print("          ", os.path.join(Path.cwd().parent, r'db\members.db'))
     db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
     pygame.display.set_caption("Login")
 

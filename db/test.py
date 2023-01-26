@@ -44,17 +44,16 @@ def score_table(player):
           global clock
           while True:
                screen.blit(background, (0, 0))
-               table = pygame.image.load(
+
                     # dynamic address
                     # os.path.join(Path.cwd().parent, r'assets/bg1.jpg')
+               try:
+                    table = pygame.image.load(
+                         os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\table.png"))
+               except:
+                    table = pygame.image.load(
+                         os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\table.png"))
 
-                    # houman address
-                    # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\table.png")
-                    #
-                    # ), (screen_width, screen_height))
-                    # nia address
-                    os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\table.png")
-               )
                screen.blit(table, (50,300))
 
                draw_text('Score Table', header_font, (0, 0, 0), screen, screen_width // 2 - 90, 215)

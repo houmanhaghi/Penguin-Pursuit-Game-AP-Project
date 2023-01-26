@@ -15,15 +15,17 @@ class ColoredPenguin:
     def __init__(self):
         self.rect = pygame.Rect(staff_start[0]+maze_start[0], staff_start[1]+maze_start[1], staff_size, staff_size)
         self.footprint = set()
-        self.icon_address = pygame.transform.scale(pygame.image.load(
+
         #dynamic address
         # os.path.join(Path.cwd().parent, r'assets/colored_penguin.png')
-        #houman address
-        # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\colored_penguin.png")
-        # ), (staff_size, staff_size))
-        #nia address
-        os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\colored_penguin.png")
-        ), (staff_size, staff_size))
+        try:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
+            os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\colored_penguin.png")
+            ), (staff_size, staff_size))
+        except:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
+            os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\colored_penguin.png")
+            ), (staff_size, staff_size))
 
     def move(self, dx, dy):
         if dx != 0:
@@ -58,15 +60,15 @@ class BlackPenguin(ColoredPenguin):
         super().__init__()
         self.temp = []
 
-        self.icon_address = pygame.transform.scale(pygame.image.load(
-            # dynamic address
-            # os.path.join(Path.cwd().parent, r'assets/black_penguin.png')
-
-            # houman address
-            # os.path.join(
-            #     r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\black_penguin.png")
-            #     ), (staff_size, staff_size))
-            #nia address
+        # dynamic address
+        # os.path.join(Path.cwd().parent, r'assets/black_penguin.png')
+        try:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
+            os.path.join(
+                r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\black_penguin.png")
+                ), (staff_size, staff_size))
+        except:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
             os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\black_penguin.png")
             ), (staff_size, staff_size))
 
@@ -97,17 +99,18 @@ class BlackPenguin(ColoredPenguin):
 
 class Fish:
     def __init__(self):
-        self.icon_address = pygame.transform.scale(pygame.image.load(
         #dynamic address
         # os.path.join(Path.cwd().parent, r'assets/fish.png')
 
-        #houman address
-        # os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\fish.png")
-        #
-        # ), (staff_size, staff_size))
-        #nia address
-        os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\fish.png")
-        ), (staff_size, staff_size))
+        try:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
+            os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\fish.png")
+
+            ), (staff_size, staff_size))
+        except:
+            self.icon_address = pygame.transform.scale(pygame.image.load(
+            os.path.join(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\fish.png")
+            ), (staff_size, staff_size))
 
     def set_fish_rect(self, position):
         self.rect = pygame.Rect(position[0]+maze_start[0], position[1]+maze_start[1], staff_size, staff_size)
@@ -162,7 +165,12 @@ def one_player_game(player_information):
     staff_size = 25
     wall_size = 25
 
+
+    db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
+
+
     global player_username, player_scores, player_last_level, player_last_result
+    player_information = db.read(player_information)
     player_username, player_scores, player_last_level, player_last_result = player_information
 
     global walls, score, new_result, new_level, coloredPenguin_footprint
@@ -177,7 +185,6 @@ def one_player_game(player_information):
     black_penguin = BlackPenguin()
     fish = Fish()
     maze = Maze()
-    db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
 
     maze.create_maze()
 
@@ -199,14 +206,18 @@ def one_player_game(player_information):
     pygame.init()
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption(f"Lumosity")
-    icon_image = pygame.image.load(
-        # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
-        # houman addr
-        os.path.join(r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png")
-        # miayesh addr
-        ##
-    )
-    pygame.display.set_icon(icon_image)
+
+    # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
+    try:
+        icon_image = pygame.image.load(
+            os.path.join(
+                r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png"))
+        pygame.display.set_icon(icon_image)
+    except:
+        icon_image = pygame.image.load(
+            os.path.join(
+                r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\happy_penguin.png"))
+        pygame.display.set_icon(icon_image)
 
     # drawers
     show_level = pygame.font.Font(None, 40).render(f'LEVEL {new_level}', True, (0, 0, 0))
@@ -272,6 +283,11 @@ def one_player_game(player_information):
         screen.blit(background, (0, 0))
         if rotation_time > step_counter // fps:
             screen.blit(show_level, show_level_position)
+        else:
+            screen.blit(pygame.transform.scale(pygame.image.load(
+                r'C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\up_direction.png'
+            ), (50, 60))
+                , ( screen_width // 2 - 20, walls[0].rect.y - 60))
         screen.blit(pygame.transform.rotate(colored_penguin.icon_address, h), colored_penguin.rect)
         screen.blit(pygame.transform.rotate(black_penguin.icon_address, h), black_penguin.rect)
         screen.blit(pygame.transform.rotate(fish.icon_address, h), fish.rect)
@@ -287,7 +303,7 @@ def one_player_game(player_information):
         clock.tick(fps)
 
 
-pygame.quit()######
+pygame.quit()
 
 #example
 one_player_game(('houman', '10, 40, 97, 876', 1, 'win'))
