@@ -1,4 +1,5 @@
 import time
+from components.levels import *
 from components.constants import *
 import os, sys
 from db.data_base import *
@@ -119,22 +120,7 @@ class Fish:
 class Maze:
     def __init__(self):
         # maze should be called from other files depends on level
-        self.maze = [
-            "WWWWWWWWWWWWWWWWWWWWWW",
-            "W     WWWW           W",
-            "W     WWWW       W   W",
-            "W   W          WWWW  W",
-            "W WWW    WWWW        W",
-            "W   W      W  W      W",
-            "W   W      W   WWW  WW",
-            "W   WWW W WW   W  W  W",
-            "W      W    W   W W  W",
-            "W WW   W    WWWWW W  W",
-            "W W      W W         W",
-            "W  W   WWWW    WWW   W",
-            "W     W          W E W",
-            "WWWWWWWWWWWWWWWWWWWWWW",
-        ]
+        self.maze = level_maze
 
     def create_maze(self):
         # convert maze into array
@@ -177,16 +163,6 @@ def one_player_game(player_information):
     walls = []
     h = 0
     new_h = -1
-    rotation_time = 3  #second
-
-    ### instances
-    global colored_penguin, black_penguin, fish
-    colored_penguin = ColoredPenguin()
-    black_penguin = BlackPenguin()
-    fish = Fish()
-    maze = Maze()
-
-    maze.create_maze()
 
     ### control variables
     if player_last_result == 'win':
@@ -201,6 +177,20 @@ def one_player_game(player_information):
             new_level = player_last_level - 1
             # black_penguin.BlackPenguin_move(player_last_level-1)
 
+    ##### level dependecies #######
+    global black_penguin_speed, rotation_time, level_maze
+    black_penguin_speed = levels[new_level-1]['black_penguin_speed']
+    rotation_time = levels[new_level-1]['rotation_time']
+    level_maze = levels[new_level-1]['level_maze']
+
+
+    ### instances
+    global colored_penguin, black_penguin, fish
+    colored_penguin = ColoredPenguin()
+    black_penguin = BlackPenguin()
+    fish = Fish()
+    maze = Maze()
+    maze.create_maze()
 
     # pygame starts
     pygame.init()
@@ -266,7 +256,7 @@ def one_player_game(player_information):
 
         #blach penguin movement
         try:
-            black_penguin.BlackPenguin_move(2 * step_counter // fps)
+            black_penguin.BlackPenguin_move(black_penguin_speed * step_counter // fps)
         except:
             pass
         finally:

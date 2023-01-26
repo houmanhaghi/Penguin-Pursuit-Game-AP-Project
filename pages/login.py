@@ -64,7 +64,7 @@ def login():
         screen.blit(background, (0, 0))
 
         screen.blit(welcome, (screen_width//2 - welcome.get_width()//2, screen_height//8))
-        screen.blit(happy_penguin, (5*screen_width // 8 , screen_height // 4))
+        screen.blit(happy_penguin, (17 * screen_width // 32 , 9 * screen_height // 32))
         screen.blit(text_field, (screen_width // 2 - welcome.get_width() // 2 +6, 2*screen_height // 4))
         color_active = pygame.Color('black')
         color_passive = pygame.Color('white')
