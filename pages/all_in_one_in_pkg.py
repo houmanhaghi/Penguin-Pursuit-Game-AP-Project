@@ -45,9 +45,7 @@ except:
     ), (screen_width, screen_height))
 
 
-max_level = 5
-
-
+max_level = 10
 
 step = 25
 u, r, d, l, = (0, -step), (step, 0), (0, step), (-step, 0)
@@ -77,36 +75,39 @@ levels = [
                         ],
 
 
-    } ,
+    },
+
 # level 2
 {
-    'rotation_time' : 2,
+    'rotation_time' : 4,
     'black_penguin_speed' : 1,
-    'movement_steps': [r, r, r, r, r, r, d, d, r, r, r, r, r, r, d, d, d, l, d, d, l, l, d, d, r, r, r, r, r, r, r, r, d, d],
+    'movement_steps': [r, r, r, r, d, d, d, d, r, r, r, r, r, d, d, d, d, r, d, d, d, l, l, l],
 
     'level_maze':   # 22 * 14
                     [
                         "WWWWWWWWWWWWWWWWWWWWWW",
-                        "W        WWWWWWWWWW  W",
-                        "W                WW  W",
-                        "W WWWWW  W     WWWW  W",
-                        "W  WWWWWWWWWW        W",
-                        "W   W      WW        W",
-                        "W   W          WWWWWWW",
-                        "W   WWW   WW   W     W",
-                        "W       W    W W     W",
-                        "W  WW   W  WWWWW     W",
-                        "W W     WW           W",
-                        "W  W   WWWW    WWW   W",
-                        "W    E W         W E W",
+                        "W     WWWW           W",
+                        "W            wwwwW   W",
+                        "W  W           WWWW  W",
+                        "W WWW    WWWW        W",
+                        "W   W      W  W      W",
+                        "W   W      W   WWW  WW",
+                        "W   WWWWW  WW  W     W",
+                        "W      W    W        W",
+                        "W WW   W    WWWWW    W",
+                        "W W      W           W",
+                        "W W   WWWWW    WWWW  W",
+                        "W     W E         W  W",
                         "WWWWWWWWWWWWWWWWWWWWWW",
+
                     ],
 
 
-    } ,
+    },
+
 # level 3
 {
-    'rotation_time' : 2,
+    'rotation_time' : 4,
     'black_penguin_speed' : 2,
     'movement_steps': [d, d, d, d, d, d, d, r, r, r, r, r, d, d, d, d, r, r, r, r, r, r, r, u, u, r, r, r, r, r, d, d],
     'level_maze':   # 22 * 14
@@ -128,37 +129,38 @@ levels = [
                         ],
 
 
-    } ,
+    },
 
 # level 4
 {
-    'rotation_time' : 2,
+    'rotation_time' : 4,
     'black_penguin_speed' : 3,
-    'movement_steps': [r, r, r, r, d, d, d, d, r, r, r, r, r, d, d, d, d, r, d, d, d, l, l, l],
+    'movement_steps': [r, r, r, r, r, r, d, r, r, r, r, r, r, d, d, d, d, d, l, d, l, l, d, d, r, r, r, r, r, r, r, r, r, d],
     'level_maze':   # 22 * 14
                     [
-                            "WWWWWWWWWWWWWWWWWWWWWW",
-                            "W     WWWW           W",
-                            "W            wwwwW   W",
-                            "W  W           WWWW  W",
-                            "W WWW    WWWW        W",
-                            "W   W      W  W      W",
-                            "W   W      W   WWW  WW",
-                            "W   WWWWW  WW  W     W",
-                            "W      W    W        W",
-                            "W WW   W    WWWWW    W",
-                            "W W      W           W",
-                            "W W   WWWWW    WWWW  W",
-                            "W     W E         W  W",
-                            "WWWWWWWWWWWWWWWWWWWWWW",
-                        ],
+                        "WWWWWWWWWWWWWWWWWWWWWW",
+                        "W        WWWWWWWWWW  W",
+                        "W                WW  W",
+                        "W WWWWW        WWWW  W",
+                        "W  WWWWWWWWWW        W",
+                        "W   W      WW        W",
+                        "W   W          WWWWWWW",
+                        "W   WWW   WW   W     W",
+                        "W       W    W W     W",
+                        "W  WW   W  WWWWW     W",
+                        "W W     WW           W",
+                        "W  W   WWWW    WWW   W",
+                        "W      W         W E W",
+                        "WWWWWWWWWWWWWWWWWWWWWW",
+                    ],
 
 
-    } ,
+    },
+
 # level 5
 {
-    'rotation_time' : 2,
-    'black_penguin_speed' : 4,
+    'rotation_time' : 3,
+    'black_penguin_speed' : 3,
     'movement_steps': [r, r, r, r, d, d, r, r, r, r, r, r, r, r, r, d, r, r, r, r, r, d, d, d, d, d, d, d, d],
     'level_maze':   # 22 * 14
                     [
@@ -178,6 +180,136 @@ levels = [
                             "WWWWWWWWWWWWWWWWWWWWWW",
 
                     ],
+
+
+    },
+
+# level 6
+{
+    'rotation_time' : 2,
+    'black_penguin_speed' : 3,
+    'movement_steps': [d, r, r, r, r, r, r, d, d, d, d, r, r, d, d, r, r, r, r, r, r, r, r, d, r],
+    'level_maze':   # 22 * 14
+                    [
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                            "W   WWWWWWWWW    wwwwW",
+                            "W       WW  W    W   W",
+                            "W   W       W  WWWW  W",
+                            "W  WWW   WWWW  W     W",
+                            "W   W      W  WW     W",
+                            "W   W      W    WWwwWW",
+                            "W   WWWW  WW      WwwW",
+                            "W      W          W  W",
+                            "W WW  W   WWWW WW  E W",
+                            "W W      W     W     W",
+                            "W      WWWW    WWW   W",
+                            "W                W   W",
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                        ],
+
+
+    },
+
+# level 7
+{
+    'rotation_time' : 2,
+    'black_penguin_speed' : 4,
+    'movement_steps': [d, d, d, d, d, d, d, r, r, r, r, d, d, d, d, r, r, r, r, u, r, r, d, r, r, r, u, u, u, u, r, r, r, d, r, r, u, u, u, u, u, u, u],
+    'level_maze':   # 22 * 14
+                    [
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                            "W   WWWWWWWWW    wwwwW",
+                            "W       WW  W    W E W",
+                            "W   W       W  W WW  W",
+                            "W  WWW   WWWW  W     W",
+                            "W   W      W  WW  W  W",
+                            "W   W      W    WWw WW",
+                            "W   WWWW  WW      W wW",
+                            "W      W  W       W  W",
+                            "W WW  W   WWWW WW    W",
+                            "W W   W  W   W W     W",
+                            "W     WWW   WW WWW   W",
+                            "W         W      W   W",
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                        ],
+
+
+    },
+
+# level 8
+{
+    'rotation_time' : 2,
+    'black_penguin_speed' : 5,
+    'movement_steps': [d, d, d, d, d, d, d, r, r, r, r, d, d, d, d, r, r, r, r, u, r, r, d, r, r, r, u, u, u, u, l, u, u, u, u, u, u, l, l, d, l, l, l, d, d],
+    'level_maze':   # 22 * 14
+                    [
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                            "W   WWWWWWWWW    wwwwW",
+                            "W   W   WW       W   W",
+                            "W   W       W  W WW  W",
+                            "W  WWW   WWWW  W     W",
+                            "W   W    E W  WW  W  W",
+                            "W   W      W     Ww WW",
+                            "W   WWWW  WW      W wW",
+                            "W      W  W       W  W",
+                            "W WW  W   WWWW WW    W",
+                            "W W   W  W   W W     W",
+                            "W     WWW   WW WWW   W",
+                            "W         W      W   W",
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                        ],
+
+
+    },
+
+# level 9
+{
+    'rotation_time' : 1,
+    'black_penguin_speed' : 5,
+    'movement_steps': [d, d, d, r, r, r, r, r, r, r, u, r, r, r, u, r, r, d, d, d, d, r, d, d, l, d, d, l, l, d, l],
+    'level_maze':   # 22 * 14
+                    [
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                            "W   WWWWWWWWW    wwwwW",
+                            "W   W   WW       W   W",
+                            "W  WWW      W  W WW  W",
+                            "W        WWWW  W     W",
+                            "W   W      W  WW  W  W",
+                            "W   W      W    WWw WW",
+                            "W   WWWW  WWWW    W wW",
+                            "W      W  W       W  W",
+                            "W WW  W   WWW  WW    W",
+                            "W W   W  W      W    W",
+                            "W    WWWW E WW WWW   W",
+                            "W    W    W      W   W",
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                        ],
+
+
+    },
+
+# level 10
+{
+    'rotation_time' : 1,
+    'black_penguin_speed' : 5,
+    'movement_steps': [d, d, d, d, d, r, r, d, d, r, r, d, d, d, r, d, r, r, r, u, r, r, u, r, r, u, u, r, r, r, r, d, r, r, u, u, u, u, u, l, l, l, u, u, u, l, l, l, l, l, d, d, l, d, d, l, l, u, l, l, u, u, l],
+    'level_maze':   # 22 * 14
+                    [
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                            "W   WWWWWWW      wwwwW",
+                            "W   WE  WW  W    W   W",
+                            "W  WWW WW   W  W WW  W",
+                            "W   W    W WW  W     W",
+                            "W  WWWW    W  WW  W  W",
+                            "W   W      W  W WWw WW",
+                            "W   WWWW  WWWW    W wW",
+                            "W      W  W       W  W",
+                            "W WW  W   WWW WWW    W",
+                            "W W   W  W      W    W",
+                            "W      WW   WW WWW   W",
+                            "W    W    W      W   W",
+                            "WWWWWWWWWWWWWWWWWWWWWW",
+                        ],
 
 
     },
@@ -486,6 +618,9 @@ class BlackPenguin(ColoredPenguin):
 
         movement_steps = move_step
         if not last_step in self.temp:
+            if len(self.temp) == 0:
+                self.rect.x -= 5
+                self.rect.y -= 5
             self.temp.append(last_step)
             self.rect.x += movement_steps[last_step][0]
             self.rect.y += movement_steps[last_step][1]
@@ -630,7 +765,7 @@ def one_player_game(player_information):
 
         # Just added this to make it slightly fun ;)
         if colored_penguin.rect.colliderect(fish.rect):
-            score = ( len(colored_penguin.footprint)//3 + total_steps - _last_step)
+            score = int((1 + new_level / 10 )*( len(colored_penguin.footprint)//3 + 30 - _last_step) // 1)
             new_player_score = player_scores + f', {score}'
             db.update((player_username, new_player_score, new_level, 'win'))
             time.sleep(1)
@@ -724,14 +859,11 @@ def two_player_game(player_information):
             new_level = player_last_level + 1
         else:
             new_level = player_last_level
-            # black_penguin.BlackPenguin_move(player_last_level+1)
     elif player_last_result == 'loss':
         new_level = player_last_level
-        # black_penguin.BlackPenguin_move(player_last_level)
     elif player_last_result == 'double loss':
         if player_last_level > 1:
             new_level = player_last_level - 1
-            # black_penguin.BlackPenguin_move(player_last_level-1)
     else:
         new_level = 1
 
@@ -803,7 +935,7 @@ def two_player_game(player_information):
 
         # Just added this to make it slightly fun ;)
         if colored_penguin.rect.colliderect(fish.rect):
-            score = (len(colored_penguin.footprint) // 3 + total_steps - _last_step)
+            score = int((1 + new_level / 10 )*( len(colored_penguin.footprint)//3 ) // 1)
             new_player_score = player_scores + f', {score}'
             db.update((player_username, new_player_score, new_level, 'win'))
             time.sleep(1)

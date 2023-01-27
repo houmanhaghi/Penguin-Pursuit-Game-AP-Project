@@ -26,15 +26,8 @@ cursor = connect.cursor()
 
 
 ############## adding information ##############
-info = (
-        'houman', '10, 40, 97, 876', 1, 'win'
-)
 
-
-cursor.execute("select * from ALL_MEMBERS")
-ii = cursor.fetchall()
-for i in ii:
-    print(i)
+info = ('houmanhaghi', '0, 50, 31, 69, 59, 64, 28, 41, 56, 84, 83, 102', 9, 'win')
 
 
 # cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
@@ -52,17 +45,19 @@ for i in ii:
 
 # cursor.execute(f"""
 #         DELETE FROM ALL_MEMBERS
-#         WHERE username = "houman";
+#         WHERE username = "houmanhaghi";
 #         """)
 
 
+
+cursor.execute("select * from ALL_MEMBERS")
+ii = cursor.fetchall()
+for i in ii:
+    print(i)
+
+
+
 #########################################
-
-
-########### adding information
-# info = ("houman", "0, 10, 23, 4, 76, 23", 1, "null")
-# cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
-
 connect.commit()
 connect.close()
 
