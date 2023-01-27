@@ -1,10 +1,9 @@
 import os, sys
 import pygame
-from pathlib import Path
 from pygame.locals import *
 import sqlite3 as sq
 import time
-
+from pathlib import Path
 
 
 ##################################### constants ########################################
@@ -1003,8 +1002,8 @@ def score_table(player):
 
      arr = d[1].split(",")
      int_arr = list(map(int, arr))
-     for i in range(len(int_arr)):
-          score = max(int_arr)
+
+     score = sum(int_arr)
 
      mainClock = pygame.time.Clock()
      pygame.init()
@@ -1054,10 +1053,10 @@ def score_table(player):
 
          # making the table
          _draw_text('Name', font2, (255, 255, 255), screen, screen_width // 4 - 95, 305) # last width: screen_width // 4 - 20
-         _draw_text('Best Score', font2, (255, 255, 255), screen, screen_width - 323, 305)
+         _draw_text('Score', font2, (255, 255, 255), screen, screen_width - 295, 305)
          _draw_text('Level', font2, (255, 255, 254), screen, screen_width - 155, 305)
          _draw_text(str(name), table_font, (0, 0, 0), screen, screen_width // 4 - 90, 346)
-         _draw_text(str(score), table_font, (0, 0, 0), screen, screen_width - 275, 346)
+         _draw_text(str(score), table_font, (0, 0, 0), screen, screen_width - 283, 346)
          _draw_text(str(last_level), table_font, (0, 0, 0), screen, screen_width - 125, 346)
 
          # writing text on the button
