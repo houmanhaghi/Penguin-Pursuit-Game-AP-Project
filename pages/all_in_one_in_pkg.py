@@ -194,7 +194,6 @@ class DB:
 
         for line in result:
             if line[0] == info or line[0] == info[0]:
-                print('founded')
                 return line
         # line -> name, scores, last_level, last_result
         # name : name
@@ -205,7 +204,6 @@ class DB:
 
     def insert(self, info:tuple):
         self.cursor.execute("INSERT INTO ALL_MEMBERS VALUES ( ? , ? , ? , ? )", info)
-        print('inserted')
         self.connect.commit()
 
 
@@ -225,7 +223,6 @@ class DB:
                 WHERE username = "{info[0]}" ;
         ''')
 
-        print('updated')
         self.connect.commit()
 
 
@@ -237,13 +234,14 @@ def login():
     pygame.init()
     screen = pygame.display.set_mode((screen_width, screen_height))
     pygame.display.set_caption("Login")
+####
     welcome = pygame.font.Font(None, 40).render('WELCOME TO THE PENGUIN GAME', True, (0, 0, 0))
     happy_penguin = pygame.transform.scale(icon_image,(200,300))
     text_field = pygame.font.Font(None, 24).render('Please Enter Your Name', True, (0, 0, 0))
-    input_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 , 2 * screen_height // 4 + 30, 300, 25)
-    login_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 + 50 , 2*screen_height // 4 + text_field.get_height()+ 60,100 ,30)
+    input_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 + 20, 2 * screen_height // 4 , 300, 25)
+    login_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 + 50 + 20, 2*screen_height // 4 + text_field.get_height()+ 30 ,100 ,30)
     login_button = pygame.font.Font(None, 20).render('Login', True, (0, 0, 0))
-    signup_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 + 50,login_rect.y + 40, 100, 30)
+    signup_rect = pygame.Rect(screen_width // 2 - welcome.get_width() // 2 + 50 + 20,login_rect.y + 45 , 100, 30)
     Signup_button = pygame.font.Font(None, 20).render('Signup', True, (0, 0, 0))
 
     active = False
@@ -291,7 +289,7 @@ def login():
 
         screen.blit(welcome, (screen_width//2 - welcome.get_width()//2, screen_height//8))
         screen.blit(happy_penguin, (17 * screen_width // 32 , 9 * screen_height // 32))
-        screen.blit(text_field, (screen_width // 2 - welcome.get_width() // 2 +6, 2*screen_height // 4))
+        screen.blit(text_field, (screen_width // 2 - welcome.get_width() // 2 +6 + 20, 2*screen_height // 4 - 40))
         color_active = pygame.Color('black')
         color_passive = pygame.Color('white')
 
@@ -303,7 +301,7 @@ def login():
 
         pygame.draw.rect(screen, color, input_rect)
         text_surface = pygame.font.Font(None, 24).render(username, True, (255, 255, 255))
-        screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
+        screen.blit(text_surface, (input_rect.x + 5 + 20, input_rect.y + 5))
         input_rect.w = max(200, text_surface.get_width() + 10)
 
 
@@ -315,8 +313,6 @@ def login():
 
         pygame.display.flip()
         clock.tick(fps)
-
-
 
 
 
@@ -335,18 +331,13 @@ def start_menu(player_information : tuple):
     A function that can be used to write text on our screen and buttons
     """
 
-    def draw_text(text, font2, color, surface, x, y):
-        # textobj = font2.render(text, 1, color)
-        # textrect = textobj.get_rect()
-        # textrect.topleft = (x, y)
-        # surface.blit(textobj, textrect)
-        surface.blit(pygame.font.Font(None, 30).render(text, True, color), (10, 100))
     # A variable to check for the status later
     click = False
 
     # Main container function that holds the buttons and game functions
     global clock
     while True:
+        mx, my = pygame.mouse.get_pos()
 
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -360,40 +351,42 @@ def start_menu(player_information : tuple):
                 if event.button == 1:
                     click = True
 
-        screen.blit(background, (0, 0))
-
-        draw_text("Main Menu", header_font, (0, 0, 0), screen, screen_width // 2 - 95, 117)
-
-        mx, my = pygame.mouse.get_pos()
-
         # creating buttons
+
         button_1 = pygame.Rect(screen_width // 2 - 100, 250, 200, 50)
         button_2 = pygame.Rect(screen_width // 2 - 100, 350, 200, 50)
         button_3 = pygame.Rect(screen_width // 2 - 100, 450, 200, 50)
-
+        main_exit_button = pygame.Rect(screen_width - 110, 530, 80, 40)
         # defining functions when a certain button is pressed
         if button_1.collidepoint((mx, my)):
             if click:
-                print(click, 'clicked')
-                # one_player_game.one_player_game(player_information)
                 return 'one_player_game'
         if button_2.collidepoint((mx, my)):
             if click:
-                # two_player_game.two_player_game(player_information)
                 return 'two_player_game'
         if button_3.collidepoint((mx, my)):
             if click:
-                # score_table.score_table(player_information)
                 return 'score_table'
+        if main_exit_button.collidepoint((mx, my)):
+            if click:
+                return 'exit'
+
+
+        # draw & blit
+        screen.blit(background, (0, 0))
+        screen.blit(header_font.render("Main Menu", True, (0, 0, 0)), (screen_width // 2 - 95, 117))
 
         pygame.draw.rect(screen, (0, 191, 255), button_1)
         pygame.draw.rect(screen, (0, 191, 255), button_2)
         pygame.draw.rect(screen, (0, 191, 255), button_3)
+        pygame.draw.rect(screen, (220, 11, 0), main_exit_button)
 
-        # writing text on top of button
-        draw_text('One Player', font2, (255, 255, 255), screen, screen_width // 2 - 65, 257)
-        draw_text('Two Player', font2, (255, 255, 255), screen, screen_width // 2 - 65, 357)
-        draw_text('Score Table', font2, (255, 255, 254), screen, screen_width // 2 - 65, 457)
+        screen.blit(font2.render("One Player", True, (255, 255, 255)), (screen_width // 2 - 65, 257))
+        screen.blit(font2.render('Two Player', True, (255, 255, 255)), (screen_width // 2 - 65, 357))
+        screen.blit(font2.render('Score Table', True, (255, 255, 255)), (screen_width // 2 - 65, 457))
+        screen.blit(font2.render('Exit', True, (255, 255, 255)), (screen_width - 92, 532))
+
+
 
         pygame.display.update()
         mainClock.tick(60)
@@ -575,6 +568,8 @@ def one_player_game(player_information):
         if player_last_level > 1:
             new_level = player_last_level - 1
             # black_penguin.BlackPenguin_move(player_last_level-1)
+    else:
+        new_level = 1
 
     ##### level dependecies #######
     global black_penguin_speed, rotation_time, level_maze
@@ -719,14 +714,10 @@ def score_table(player):
      except:
           D = DB(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\db\members.db")
      d = D.read(player)
-
      name , last_level = d[0],  d[2]
-     print(name, last_level)
 
      if len(name) > 16:
          name = name[:16]
-     elif len(name) < 15:
-         name =  (16-len(name)//2)*' ' + name + (16-len(name)//2)*' '
 
      arr = d[1].split(",")
      int_arr = list(map(int, arr))
@@ -780,15 +771,15 @@ def score_table(player):
          pygame.draw.rect(screen, (220, 11, 0), exit_button)
 
          # making the table
-         _draw_text('Name', font2, (255, 255, 255), screen, screen_width // 4 - 20, 305)
+         _draw_text('Name', font2, (255, 255, 255), screen, screen_width // 4 - 95, 305) # last width: screen_width // 4 - 20
          _draw_text('Best Score', font2, (255, 255, 255), screen, screen_width - 323, 305)
-         _draw_text('Level', font2, (255, 255, 254), screen, screen_width - 150, 305)
-         _draw_text(str(name), table_font, (0, 0, 0), screen, screen_width // 4 - 95, 346)
+         _draw_text('Level', font2, (255, 255, 254), screen, screen_width - 155, 305)
+         _draw_text(str(name), table_font, (0, 0, 0), screen, screen_width // 4 - 90, 346)
          _draw_text(str(score), table_font, (0, 0, 0), screen, screen_width - 275, 346)
-         _draw_text(str(last_level), table_font, (0, 0, 0), screen, screen_width - 130, 346)
+         _draw_text(str(last_level), table_font, (0, 0, 0), screen, screen_width - 125, 346)
 
          # writing text on the button
-         _draw_text('Quit', font2, (255, 255, 255), screen, screen_width - 96, 530)
+         _draw_text('Back', font2, (255, 255, 255), screen, screen_width - 96, 530)
 
          for event in pygame.event.get():
              if event.type == QUIT:
@@ -828,7 +819,7 @@ def main():
             two_player_game(player_information)
         elif player_command == 'score_table':
             score_table(player_information)
-        elif player_command == 'score_table':
+        elif player_command == 'exit':
             break
 
 
