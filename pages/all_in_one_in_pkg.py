@@ -49,27 +49,30 @@ max_level = 5
 
 
 
+step = 25
+u, r, d, l, = (0, -step), (step, 0), (0, step), (-step, 0)
 
 levels = [
     # level 1
 {
     'rotation_time' : 5,
     'black_penguin_speed' : 1,
+    'movement_steps': [r, r, r, r, r, r, r, r, d, d, l, l, l, d, d, d, d, d, d, d, l, l, l, d, d],
     'level_maze':   # 22 * 14
                     [
                             "WWWWWWWWWWWWWWWWWWWWWW",
-                            "W     WWWW           W",
-                            "W     WWWW       W   W",
-                            "W   W          WWWW  W",
+                            "W             WWWW   W",
+                            "W   WWWWW  W      Wwww",
+                            "W   W           WWW  W",
                             "W WWW    WWWW        W",
-                            "W   W      W  W      W",
-                            "W   W      W   WWW  WW",
-                            "W   WWW W WW   W  W  W",
-                            "W      W    W   W W  W",
-                            "W WW   W    WWWWW W  W",
+                            "W   W      W     W   W",
+                            "WWWWW      W   WWW  WW",
+                            "W  WWW  W WW   W  WwwW",
+                            "W       W       W W  W",
+                            "W WW        WWWWW W  W",
                             "W W      W W         W",
-                            "W  W   WWWW    WWW   W",
-                            "W     W          W E W",
+                            "W      WWWW    WWW   W",
+                            "W  E   W          W  W",
                             "WWWWWWWWWWWWWWWWWWWWWW",
                         ],
 
@@ -79,23 +82,25 @@ levels = [
 {
     'rotation_time' : 2,
     'black_penguin_speed' : 1,
+    'movement_steps': [r, r, r, r, r, r, d, d, r, r, r, r, r, r, d, d, d, l, d, d, l, l, d, d, r, r, r, r, r, r, r, r, d, d],
+
     'level_maze':   # 22 * 14
                     [
-                            "WWWWWWWWWWWWWWWWWWWWWW",
-                            "W     WWWW           W",
-                            "W     WWWW       W   W",
-                            "W   W          WWWW  W",
-                            "W WWW    WWWW        W",
-                            "W   W      W  W      W",
-                            "W   W      W   WWW  WW",
-                            "W   WWW W WW   W  W  W",
-                            "W      W    W   W W  W",
-                            "W WW   W    WWWWW W  W",
-                            "W W      W W         W",
-                            "W  W   WWWW    WWW   W",
-                            "W     W          W E W",
-                            "WWWWWWWWWWWWWWWWWWWWWW",
-                        ],
+                        "WWWWWWWWWWWWWWWWWWWWWW",
+                        "W        WWWWWWWWWW  W",
+                        "W                WW  W",
+                        "W WWWWW  W     WWWW  W",
+                        "W  WWWWWWWWWW        W",
+                        "W   W      WW        W",
+                        "W   W          WWWWWWW",
+                        "W   WWW   WW   W     W",
+                        "W       W    W W     W",
+                        "W  WW   W  WWWWW     W",
+                        "W W     WW           W",
+                        "W  W   WWWW    WWW   W",
+                        "W    E W         W E W",
+                        "WWWWWWWWWWWWWWWWWWWWWW",
+                    ],
 
 
     } ,
@@ -103,21 +108,22 @@ levels = [
 {
     'rotation_time' : 2,
     'black_penguin_speed' : 2,
+    'movement_steps': [d, d, d, d, d, d, d, r, r, r, r, r, d, d, d, d, r, r, r, r, r, r, r, u, u, r, r, r, r, r, d, d],
     'level_maze':   # 22 * 14
                     [
                             "WWWWWWWWWWWWWWWWWWWWWW",
-                            "W     WWWW           W",
+                            "W  WWWW          wwwwW",
                             "W     WWWW       W   W",
                             "W   W          WWWW  W",
-                            "W WWW    WWWW        W",
+                            "W  WWW   WWWW        W",
                             "W   W      W  W      W",
-                            "W   W      W   WWW  WW",
-                            "W   WWW W WW   W  W  W",
-                            "W      W    W   W W  W",
-                            "W WW   W    WWWWW W  W",
-                            "W W      W W         W",
-                            "W  W   WWWW    WWW   W",
-                            "W     W          W E W",
+                            "W   W      W   WWWwwWW",
+                            "W   WWWW  WW   W  WwwW",
+                            "W      W        W W  W",
+                            "W WW   W     WWWW W  W",
+                            "W W      W           W",
+                            "W      WWWW    WWW   W",
+                            "W                W E W",
                             "WWWWWWWWWWWWWWWWWWWWWW",
                         ],
 
@@ -127,22 +133,23 @@ levels = [
 # level 4
 {
     'rotation_time' : 2,
-    'black_penguin_speed' : 2,
+    'black_penguin_speed' : 3,
+    'movement_steps': [r, r, r, r, d, d, d, d, r, r, r, r, r, d, d, d, d, r, d, d, d, l, l, l],
     'level_maze':   # 22 * 14
                     [
                             "WWWWWWWWWWWWWWWWWWWWWW",
                             "W     WWWW           W",
-                            "W     WWWW       W   W",
-                            "W   W          WWWW  W",
+                            "W            wwwwW   W",
+                            "W  W           WWWW  W",
                             "W WWW    WWWW        W",
                             "W   W      W  W      W",
                             "W   W      W   WWW  WW",
-                            "W   WWW W WW   W  W  W",
-                            "W      W    W   W W  W",
-                            "W WW   W    WWWWW W  W",
-                            "W W      W W         W",
-                            "W  W   WWWW    WWW   W",
-                            "W     W          W E W",
+                            "W   WWWWW  WW  W     W",
+                            "W      W    W        W",
+                            "W WW   W    WWWWW    W",
+                            "W W      W           W",
+                            "W W   WWWWW    WWWW  W",
+                            "W     W E         W  W",
                             "WWWWWWWWWWWWWWWWWWWWWW",
                         ],
 
@@ -151,7 +158,8 @@ levels = [
 # level 5
 {
     'rotation_time' : 2,
-    'black_penguin_speed' : 2,
+    'black_penguin_speed' : 4,
+    'movement_steps': [r, r, r, r, d, d, r, r, r, r, r, r, r, r, r, d, r, r, r, r, r, d, d, d, d, d, d, d, d],
     'level_maze':   # 22 * 14
                     [
                             "WWWWWWWWWWWWWWWWWWWWWW",
@@ -168,13 +176,13 @@ levels = [
                             "W  W   WWWW    WWW   W",
                             "W     W          W E W",
                             "WWWWWWWWWWWWWWWWWWWWWW",
-                        ],
+
+                    ],
 
 
-    } ,
+    },
 
 ]
-
 ##################################### data base #######################################
 class DB:
     def __init__(self, data_base_file):
@@ -301,7 +309,7 @@ def login():
 
         pygame.draw.rect(screen, color, input_rect)
         text_surface = pygame.font.Font(None, 24).render(username, True, (255, 255, 255))
-        screen.blit(text_surface, (input_rect.x + 5 + 20, input_rect.y + 5))
+        screen.blit(text_surface, (input_rect.x + 5, input_rect.y + 5))
         input_rect.w = max(200, text_surface.get_width() + 10)
 
 
@@ -471,17 +479,12 @@ class BlackPenguin(ColoredPenguin):
     def BlackPenguin_move(self, last_step):
 
         # this numbers are for level 1:
-        global _last_step, total_steps, total_time
+        global _last_step, total_steps
         _last_step = last_step
         total_steps = 30
-        total_time = 30 #second
-        step = (total_steps * wall_size // total_time)
 
-        # up, right, down, left
-        u, r, d, l, = (0, -step), (step, 0), (0, step), (-step, 0)
-        movement_steps =[
-            r,r,r,r,d,d,r,r,r,r,r,r,r,r,r,d,r,r,r,r,r,d,d,d,d,d,d,d,d
-        ]
+
+        movement_steps = move_step
         if not last_step in self.temp:
             self.temp.append(last_step)
             self.rect.x += movement_steps[last_step][0]
@@ -560,22 +563,20 @@ def one_player_game(player_information):
             new_level = player_last_level+1
         else:
             new_level = player_last_level
-            # black_penguin.BlackPenguin_move(player_last_level+1)
     elif player_last_result == 'loss':
         new_level = player_last_level
-        # black_penguin.BlackPenguin_move(player_last_level)
     elif player_last_result == 'double loss':
         if player_last_level > 1:
             new_level = player_last_level - 1
-            # black_penguin.BlackPenguin_move(player_last_level-1)
     else:
         new_level = 1
 
     ##### level dependecies #######
-    global black_penguin_speed, rotation_time, level_maze
+    global black_penguin_speed, rotation_time, level_maze, move_step
     black_penguin_speed = levels[new_level-1]['black_penguin_speed']
     rotation_time = levels[new_level-1]['rotation_time']
     level_maze = levels[new_level-1]['level_maze']
+    move_step = levels[new_level - 1]['movement_steps']
 
 
     ### instances
@@ -664,8 +665,7 @@ def one_player_game(player_information):
             new_h = h
 
         # draw and blit elements
-
-############## whit screen rotation ##################
+#
         
         screen.blit(background, (0, 0))
         if rotation_time > step_counter // fps:
@@ -683,28 +683,178 @@ def one_player_game(player_information):
 
         screen.blit(pygame.transform.rotate(screen, -h), (0, 0))
 
-######################################################
 
         pygame.display.update()
         pygame.display.flip()
         clock.tick(fps)
 
 
-# pygame.quit()
-
-
-
-#example
-# one_player_game(('houman', '10, 40, 97, 876', 1, 'win'))
-
-
-
-
 ########################################### two player game ####################################
-def two_player_game(player):
-    pass
+def two_player_game(player_information):
+
+    ### attributes
+    global maze_start, maze_size, staff_start, staff_end, staff_size, wall_size
+    maze_size = (550, 350)
+    maze_start = (screen_width // 2 - maze_size[0] // 2, 5 * screen_height // 18)
+    staff_start = (32, 32)
+
+    # if staff_size == wall_size: walls will not be discrites
+    staff_size = 25
+    wall_size = 25
+
+    try:
+        db = DB(r'C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\db\members.db')
+    except:
+        db = DB(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\db\members.db")
+
+    global player_username, player_scores, player_last_level, player_last_result
+    player_information = db.read(player_information)
+    player_username, player_scores, player_last_level, player_last_result = player_information[0], \
+                                                                            player_information[1], \
+                                                                            player_information[2], \
+                                                                            player_information[3]
+    global walls, score, new_result, new_level, coloredPenguin_footprint
+    walls = []
+    h = 0
+    new_h = -1
+
+    ### control variables
+    if player_last_result == 'win':
+        if player_last_level < max_level:
+            new_level = player_last_level + 1
+        else:
+            new_level = player_last_level
+            # black_penguin.BlackPenguin_move(player_last_level+1)
+    elif player_last_result == 'loss':
+        new_level = player_last_level
+        # black_penguin.BlackPenguin_move(player_last_level)
+    elif player_last_result == 'double loss':
+        if player_last_level > 1:
+            new_level = player_last_level - 1
+            # black_penguin.BlackPenguin_move(player_last_level-1)
+    else:
+        new_level = 1
+
+    ##### level dependecies #######
+    global black_penguin_speed, rotation_time, level_maze, move_step
+    black_penguin_speed = levels[new_level - 1]['black_penguin_speed']
+    rotation_time = levels[new_level - 1]['rotation_time']
+    level_maze = levels[new_level - 1]['level_maze']
+    move_step = levels[new_level - 1]['movement_steps']
+
+    ### instances
+    global colored_penguin, black_penguin, fish
+    colored_penguin = ColoredPenguin()
+    black_penguin = BlackPenguin()
+    fish = Fish()
+    maze = Maze()
+    maze.create_maze()
+
+    # pygame starts
+    pygame.init()
+    screen = pygame.display.set_mode((screen_width, screen_height))
+    pygame.display.set_caption(f"Lumosity")
+
+    # os.path.join(Path.cwd().parent, r'assets/happy_penguin.png')
+    try:
+        icon_image = pygame.image.load(
+            os.path.join(
+                r"C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\happy_penguin.png"))
+        pygame.display.set_icon(icon_image)
+    except:
+        icon_image = pygame.image.load(
+            os.path.join(
+                r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\assets\happy_penguin.png"))
+        pygame.display.set_icon(icon_image)
+
+    # drawers
+    show_level = pygame.font.Font(None, 40).render(f'LEVEL {new_level}', True, (0, 0, 0))
+    show_level_position = (screen_width // 2 - show_level.get_width() // 2, maze_start[1] // 2)
+
+    run = True
+    step_counter = 0
+
+    while run:
+        for event in pygame.event.get():
+            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+                run = False
+            if event.type == pygame.QUIT:
+                run = False
+
+        key = pygame.key.get_pressed()
+        if key[pygame.K_LEFT] :
+            colored_penguin.move(-2, 0)
+        if key[pygame.K_RIGHT]:
+            colored_penguin.move(2, 0)
+        if key[pygame.K_UP]:
+            colored_penguin.move(0, -2)
+        if key[pygame.K_DOWN]:
+            colored_penguin.move(0, 2)
+
+        if key[pygame.K_a]:
+            black_penguin.move(-2, 0)
+        if key[pygame.K_d]:
+            black_penguin.move(2, 0)
+        if key[pygame.K_w]:
+            black_penguin.move(0, -2)
+        if key[pygame.K_s]:
+            black_penguin.move(0, 2)
 
 
+        # Just added this to make it slightly fun ;)
+        if colored_penguin.rect.colliderect(fish.rect):
+            score = (len(colored_penguin.footprint) // 3 + total_steps - _last_step)
+            new_player_score = player_scores + f', {score}'
+            db.update((player_username, new_player_score, new_level, 'win'))
+            time.sleep(1)
+            # pygame.quit()
+            # sys.exit()
+            return
+
+        if black_penguin.rect.colliderect(fish.rect):
+            time.sleep(1)
+            if player_last_result == 'win':
+                db.update((player_username, player_scores, new_level, 'loss'))
+            elif player_last_result == 'loss' or player_last_level == 'double loss':
+                db.update((player_username, player_scores, new_level, 'double loss'))
+            else:
+                db.update((player_username, player_scores, new_level, 'loss'))
+            return
+            # pygame.quit()
+            # sys.exit()
+
+        # blach penguin movement
+
+        step_counter += 1
+
+        # rotation control
+        h = 90 * (step_counter // (fps * rotation_time))
+        if h != new_h:
+            new_h = h
+
+        # draw and blit elements
+
+
+        screen.blit(background, (0, 0))
+        if rotation_time > step_counter // fps:
+            screen.blit(show_level, show_level_position)
+        else:
+            screen.blit(pygame.transform.scale(pygame.image.load(
+                r'C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\assets\up_direction.png'
+            ), (50, 60))
+                , (screen_width // 2 - 20, walls[0].rect.y - 60))
+        screen.blit(pygame.transform.rotate(colored_penguin.icon_address, h), colored_penguin.rect)
+        screen.blit(pygame.transform.rotate(black_penguin.icon_address, h), black_penguin.rect)
+        screen.blit(pygame.transform.rotate(fish.icon_address, h), fish.rect)
+        for wall in walls:
+            pygame.draw.rect(screen, (255, 255, 255), wall.rect)
+
+        screen.blit(pygame.transform.rotate(screen, -h), (0, 0))
+
+
+        pygame.display.update()
+        pygame.display.flip()
+        clock.tick(fps)
 
 
 ############################################### score table ####################################
