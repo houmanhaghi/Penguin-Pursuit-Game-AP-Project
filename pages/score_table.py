@@ -105,6 +105,10 @@ def score_table(player):
      main_menu()
 
 
-score_table(("houman", "0, 10, 23, 4, 76, 23", 1, "null"))
+
+# score_table(("houman", "0, 10, 23, 4, 76, 23", 1, "null"))
+
+
 # score_table(("niaw", "30", 3, "win"))
+
 # start_menu(("hello", "23, 45, 80", 1, "win"))

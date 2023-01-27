@@ -151,13 +151,15 @@ def one_player_game(player_information):
     staff_size = 25
     wall_size = 25
 
-
-    db = DB(os.path.join(Path.cwd().parent, r'db/members.db'))
+    try:
+        db = DB(r'C:\Users\rezah\Desktop\comp term 5\py\Advanced-Programming-Project\db\members.db')
+    except:
+        db = DB(r"C:\Users\USER\Desktop\nia\AP\project\Advanced-Programming-Project\db\members.db")
 
 
     global player_username, player_scores, player_last_level, player_last_result
-    player_information = db.read(player_information)
-    player_username, player_scores, player_last_level, player_last_result = player_information
+    # player_information = db.read(player_information)
+    player_username, player_scores, player_last_level, player_last_result = player_information[0], player_information[1], player_information[2], player_information[3],
 
     global walls, score, new_result, new_level, coloredPenguin_footprint
     walls = []
@@ -176,6 +178,8 @@ def one_player_game(player_information):
         if player_last_level > 1:
             new_level = player_last_level - 1
             # black_penguin.BlackPenguin_move(player_last_level-1)
+    else:
+        new_level = 1
 
     ##### level dependecies #######
     global black_penguin_speed, rotation_time, level_maze
